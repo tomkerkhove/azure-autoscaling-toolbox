@@ -31,7 +31,7 @@ Here are a few ways to integrate with Azure Monitor for your autoscaling:
 
 ### Limitations
 
-- Azure API Management will only autoscale the primarey location in a multi-regional deployment scenario ([Docs](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-autoscale#azure-api-management-autoscale-limitations))
+- Azure API Management will only autoscale the primary location in a multi-regional deployment scenario ([Docs](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-autoscale#azure-api-management-autoscale-limitations))
 
 ### Samples
 
