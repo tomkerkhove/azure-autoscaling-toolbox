@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a question 💬
+    url: https://github.com/tomkerkhove/azure-autoscaling-toolbox/discussions/new
+    about: Ask a question
+  - name: Sponsor 💘
+    url: https://github.com/sponsors/tomkerkhove
+    about: Sponsor Tom to keep on maintaining Azure Autoscaling Toolbelt.
