@@ -4,10 +4,10 @@ A toolbox to leverage observability for autoscaling in Microsoft Azure.
 
 ## Overview
 
-- [Autoscalers](https//azure-autoscaling-toolbox.tomkerkhove.be/autoscalers/)
-- [Observability](https//azure-autoscaling-toolbox.tomkerkhove.be/observability/)
-- [Limitations](//https//azure-autoscaling-toolbox.tomkerkhove.be/limitations/)
-- [Samples](https//azure-autoscaling-toolbox.tomkerkhove.be/samples/)
+- [Autoscalers](https://azure-autoscaling-toolbox.tomkerkhove.be/autoscalers/)
+- [Observability](https/:/azure-autoscaling-toolbox.tomkerkhove.be/observability/)
+- [Limitations](https://azure-autoscaling-toolbox.tomkerkhove.be/limitations/)
+- [Samples](https://azure-autoscaling-toolbox.tomkerkhove.be/samples/)
 
 ## License
 
