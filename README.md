@@ -1,4 +1,4 @@
-# Microsoft Azure Autoscaling Toolbox 🧰
+![](media/logo/Logo-Round-Full.png)
 
 A toolbox to leverage observability for autoscaling in Microsoft Azure.
 
@@ -22,7 +22,7 @@ Autoscaling is one thing, understanding how you are scaling is another.
 
 Standardizing on Azure Event Grid is a great approach to centralize your autoscaling notifications:
 
-![](media/event-grid-as-autoscaling-hub.png)
+![](media/observability/event-grid-as-autoscaling-hub.png)
 
 Here are a few ways to integrate with Azure Monitor for your autoscaling:
 
