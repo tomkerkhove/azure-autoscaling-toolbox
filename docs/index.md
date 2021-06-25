@@ -9,6 +9,6 @@ nav_order: 1
 
 ![Logo](./media/logo/logo-with-name.png)
 
-A toolbox to leverage observability for autoscaling in Microsoft Azure.
+A toolbox to leverage production-grade autoscaling in Microsoft Azure. 🧰
 
 [GitHub](https://github.com/tomkerkhove/azure-autoscaling-toolbox){: .btn }
