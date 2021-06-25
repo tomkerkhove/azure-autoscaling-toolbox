@@ -1,6 +1,6 @@
 ![](media/logo/Logo-Round-Full.png)
 
-A toolbox to leverage observability for autoscaling in Microsoft Azure.
+A toolbox to leverage production-grade autoscaling in Microsoft Azure. 🧰
 
 ## Overview
 
