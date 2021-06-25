@@ -9,15 +9,17 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
-namespace FunctionApp1
+namespace AzureAutoscalingToolbox.Samples
 {
-    public class Function1
+    public class AppMetricsFunction
     {
-        private readonly ILogger<Function1> _logger;
-        public Function1(ILogger<Function1> logger)
+        private readonly ILogger<AppMetricsFunction> _logger;
+        
+        public AppMetricsFunction(ILogger<AppMetricsFunction> logger)
         {
             _logger = logger;
         }
+
         [FunctionName("report-app-instances")]
         public async Task ReportMetric([TimerTrigger("0 */5 * * * *")] TimerInfo timer,
             [DurableClient] IDurableEntityClient durableEntityClient)

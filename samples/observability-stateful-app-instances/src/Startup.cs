@@ -1,7 +1,7 @@
 using Arcus.Observability.Correlation;
 using Arcus.Observability.Telemetry.Core;
 using Arcus.Observability.Telemetry.Serilog.Filters;
-using FunctionApp1;
+using AzureAutoscalingToolbox.Samples;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +11,7 @@ using Serilog.Configuration;
 using Serilog.Events;
 
 [assembly: FunctionsStartup(typeof(Startup))]
-namespace FunctionApp1
+namespace AzureAutoscalingToolbox.Samples
 {
     public class Startup : FunctionsStartup
     {

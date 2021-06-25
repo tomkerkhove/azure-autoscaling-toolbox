@@ -9,7 +9,7 @@ using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace FunctionApp1
+namespace AzureAutoscalingToolbox.Samples
 {
     public class KubernetesAppScaledFunction
     {
@@ -18,6 +18,7 @@ namespace FunctionApp1
         {
             _logger = logger;
         }
+
         [FunctionName("Function1_HttpStart")]
         public async Task<IActionResult> HttpStart(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestMessage req,
@@ -55,5 +56,7 @@ namespace FunctionApp1
         }
     }
 
-    public class InstanceInfo { public int InstanceCount { get; set; } }
+    public class InstanceInfo {
+        public int InstanceCount { get; set; }
+        }
 }

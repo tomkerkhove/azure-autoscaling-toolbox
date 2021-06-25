@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionApp1", "FunctionApp1.csproj", "{6CD97050-90B1-4867-BD90-B954A874ED15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureAutoscalingToolbox.Samples", "AzureAutoscalingToolbox.Samples.csproj", "{6CD97050-90B1-4867-BD90-B954A874ED15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
