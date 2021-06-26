@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
+namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions.Foundation
 {
     public class HttpFunction
     {

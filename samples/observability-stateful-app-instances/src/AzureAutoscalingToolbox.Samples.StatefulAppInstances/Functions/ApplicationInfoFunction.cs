@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities;
+using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions.Foundation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;

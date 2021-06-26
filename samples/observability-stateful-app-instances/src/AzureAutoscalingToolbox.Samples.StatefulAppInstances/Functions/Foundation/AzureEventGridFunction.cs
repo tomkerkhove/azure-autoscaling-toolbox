@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
-namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
+namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions.Foundation
 {
     public class AzureEventGridFunction : HttpFunction
     {

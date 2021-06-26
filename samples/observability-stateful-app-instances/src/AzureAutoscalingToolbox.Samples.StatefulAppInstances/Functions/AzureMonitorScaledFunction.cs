@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Interfaces;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Events.AzureMonitorAutoscale;
+using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions.Foundation;
 using CloudNative.CloudEvents;
 using CloudNative.CloudEvents.AspNetCore;
 using CloudNative.CloudEvents.NewtonsoftJson;
