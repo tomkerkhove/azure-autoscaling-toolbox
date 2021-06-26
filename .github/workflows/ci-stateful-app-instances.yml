@@ -1,0 +1,14 @@
+name: CI - Stateful Application Instances
+on:
+  pull_request:
+    paths:
+    - 'samples/observability-stateful-app-instances/**'
+  
+jobs:
+  solution:
+    name: Runtime (Solution)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Solution
+      run: dotnet build ./samples/observability-stateful-app-instances/src/AzureAutoscalingToolbox.Samples.sln --configuration Release
