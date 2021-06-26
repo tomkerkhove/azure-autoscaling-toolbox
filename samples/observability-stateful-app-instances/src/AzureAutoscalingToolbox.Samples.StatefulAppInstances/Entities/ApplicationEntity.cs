@@ -14,6 +14,9 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
     public class ApplicationEntity : IApplicationDurableEntity
     {
         public const string EntityName = "application-entity";
+        private const string AppScalingInEventName = "App Scaling In";
+        private const string AppScalingOutEventName = "App Scaling Out";
+
         private readonly ILogger<ApplicationEntity> _logger;
 
         [JsonProperty("instanceCount")]
@@ -44,9 +47,19 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         /// <param name="newInstanceCount">New instance count of the application</param>
         public void Scale(int newInstanceCount)
         {
+            ReportScalingAction(InstanceCount, newInstanceCount);
+
             InstanceCount = newInstanceCount;
 
             ReportCurrentInstanceCount();
+        }
+
+        private void ReportScalingAction(int currentInstanceCount, int newInstanceCount)
+        {
+            var eventName = currentInstanceCount < newInstanceCount ? AppScalingOutEventName : AppScalingInEventName;
+            var contextInformation = GetContextInformation();
+            
+            _logger.LogEvent(eventName, contextInformation);
         }
 
         /// <summary>
@@ -54,11 +67,17 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         /// </summary>
         public void ReportCurrentInstanceCount()
         {
+            var contextInformation = GetContextInformation();
+            _logger.LogMetric("App Instances", InstanceCount, contextInformation);
+        }
+
+        private Dictionary<string, object> GetContextInformation()
+        {
             var contextInformation = new Dictionary<string, object>
             {
                 {"AppName", Name}
             };
-            _logger.LogMetric("App Instances", InstanceCount, contextInformation);
+            return contextInformation;
         }
 
         [FunctionName(EntityName)]

@@ -8,7 +8,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
 {
-    public class ApplicationInfoFunction
+    public class ApplicationInfoFunction : HttpFunction
     {
         [FunctionName("application-info-instance-count")]
         public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "v1/app/instances")] HttpRequest request,
@@ -18,7 +18,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
             var applicationId = request.Query["appId"];
             if (string.IsNullOrWhiteSpace(applicationId))
             {
-                return new BadRequestObjectResult("No application id was specified");
+                return BadRequest("No application id was specified");
             }
 
             // Get the current state of our application entity
@@ -28,11 +28,11 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
             // If it doesn't exist, return HTTP 404
             if (appIdentity.EntityExists == false)
             {
-                return new NotFoundResult();
+                return NotFound();
             }
 
             // If it does exist, return HTTP 200 with instance count
-            return new OkObjectResult(new {appIdentity.EntityState.InstanceCount});
+            return OkWithPayload(new {appIdentity.EntityState.InstanceCount});
         }
     }
 }

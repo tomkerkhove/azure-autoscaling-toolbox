@@ -21,6 +21,9 @@
     <PackageReference Include="Arcus.Observability.Telemetry.AzureFunctions" Version="2.1.0" />
     <PackageReference Include="Arcus.Observability.Telemetry.Serilog.Sinks.Applicationinsights" Version="2.1.0" />
     <PackageReference Include="Arcus.Security.AzureFunctions" Version="1.6.0" />
+    <PackageReference Include="CloudNative.CloudEvents" Version="2.0.0" />
+    <PackageReference Include="CloudNative.CloudEvents.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="CloudNative.CloudEvents.NewtonsoftJson" Version="2.0.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="4.0.1" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.DurableTask" Version="2.5.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.12" />
