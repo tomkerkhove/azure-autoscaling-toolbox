@@ -49,7 +49,7 @@ jobs:
             path: ${{ env.OUTPUT_PATH }}
       - name: Deploy to Azure
         id: deploy-to-azure
-        uses: Azure/functions-action@v1
+        uses: Azure/functions-action@v1.3.2
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
           package: ${{ env.OUTPUT_PATH }}
