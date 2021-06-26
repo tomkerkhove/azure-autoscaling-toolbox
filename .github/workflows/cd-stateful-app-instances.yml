@@ -1,0 +1,56 @@
+name: CD - Stateful Application Instances
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+    - 'samples/observability-stateful-app-instances/**'
+  workflow_dispatch:
+
+env:
+  OUTPUT_PATH: ${{ github.workspace }}/.output
+  ARTIFACT_NAME: function-app-package
+  DOTNET_VERSION: '3.1.x'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@master
+
+    - name: Setup .NET v${{ env.DOTNET_VERSION }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Create Azure Function Artifact
+      run: dotnet publish ./samples/observability-stateful-app-instances/src/AzureAutoscalingToolbox.Samples --configuration Release --output ${{ env.OUTPUT_PATH }}
+
+    - name: Publish Azure Function Artifact
+      uses: actions/upload-artifact@v1
+      with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.OUTPUT_PATH }}
+  deploy_to_dev:
+      name: Deploy to PRD environment
+      needs: [build]
+      env:
+        AZURE_FUNCTIONAPP_NAME: azure-autoscaling-toolbox
+      environment:
+        name: Stateful Application Instances (PRD)
+      runs-on: ubuntu-latest
+      steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v1
+        with:
+            name: ${{ env.ARTIFACT_NAME }}
+            path: ${{ env.OUTPUT_PATH }}
+      - name: Deploy to Azure
+        id: deploy-to-azure
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: ${{ env.OUTPUT_PATH }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
