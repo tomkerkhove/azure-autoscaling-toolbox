@@ -9,7 +9,6 @@ using Serilog.Configuration;
 using Serilog.Events;
 
 [assembly: FunctionsStartup(typeof(Startup))]
-
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances
 {
     public class Startup : FunctionsStartup
@@ -26,7 +25,6 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances
         {
             IConfiguration config = builder.GetContext().Configuration;
 
-            builder.AddHttpCorrelation();
             builder.ConfigureSecretStore(stores =>
             {
 #if DEBUG
@@ -34,9 +32,6 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances
 #endif
 
                 stores.AddEnvironmentVariables();
-
-                //#error Please provide a valid secret provider, for example Azure Key Vault: https://security.arcus-azure.net/features/secrets/consume-from-key-vault
-                stores.AddAzureKeyVaultWithManagedServiceIdentity("https://your-keyvault.vault.azure.net/");
             });
 
             var instrumentationKey = config.GetValue<string>("APPLICATIONINSIGHTS_INSTRUMENTATIONKEY");
@@ -44,7 +39,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .Enrich.FromLogContext()
-                .Enrich.WithComponentName("Azure HTTP Trigger")
+                .Enrich.WithComponentName("Autoscaling Metrics")
                 .Enrich.WithVersion()
                 .WriteTo.Console()
                 .WriteTo.AzureApplicationInsights(instrumentationKey);
