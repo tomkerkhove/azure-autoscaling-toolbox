@@ -25,7 +25,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
         private const string AzureMonitorAutoscaleScaledOutEventType = "Azure.Monitor.Autoscale.ScaleOut.Activated";
         
         [FunctionName("azure-monitor-scaled-app-event")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "v1/autoscale/azure-monitor/app")] HttpRequest request,
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", "options", Route = "v1/autoscale/azure-monitor/app")] HttpRequest request,
             [DurableClient] IDurableEntityClient durableEntityClient)
         {
             if (request.Method.Equals("OPTIONS", StringComparison.InvariantCultureIgnoreCase))

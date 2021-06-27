@@ -24,7 +24,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
         };
         
         [FunctionName("kubernetes-app-scaled-event")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "v1/autoscale/kubernetes/app")] HttpRequest request,
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", "options", Route = "v1/autoscale/kubernetes/app")] HttpRequest request,
             [DurableClient] IDurableEntityClient durableEntityClient)
         {
             if (request.Method.Equals("OPTIONS", StringComparison.InvariantCultureIgnoreCase))
