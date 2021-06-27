@@ -10,20 +10,38 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
     public class ReportCurrentApplicationInstancesFunction
     {
         [FunctionName("report-current-app-instances")]
-        public async Task Run([TimerTrigger("0 */5 * * * *")] TimerInfo timerInfo,
+        public async Task ReportAppInstances([TimerTrigger("0 */5 * * * *")] TimerInfo timerInfo,
             [DurableClient] IDurableEntityClient durableEntityClient)
         {
             // Get all entity instances
             var entityQuery = new EntityQuery
             {
-                EntityName = ApplicationEntity.EntityName
+                EntityName = GenericApplicationEntity.EntityName
             };
             var foundEntities = await durableEntityClient.ListEntitiesAsync(entityQuery, CancellationToken.None);
 
             // Report status of every entity
             foreach (var entity in foundEntities.Entities)
             {
-                await durableEntityClient.SignalEntityAsync<IApplicationDurableEntity>(entity.EntityId, proxy => proxy.ReportCurrentInstanceCount());
+                await durableEntityClient.SignalEntityAsync<IGenericApplicationDurableEntity>(entity.EntityId, proxy => proxy.ReportCurrentInstanceCount());
+            }
+        }
+
+        [FunctionName("report-current-kubernetes-app-instances")]
+        public async Task ReportKubernetesAppInstances([TimerTrigger("0 */5 * * * *")] TimerInfo timerInfo,
+            [DurableClient] IDurableEntityClient durableEntityClient)
+        {
+            // Get all entity instances
+            var entityQuery = new EntityQuery
+            {
+                EntityName = KubernetesApplicationEntity.EntityName
+            };
+            var foundEntities = await durableEntityClient.ListEntitiesAsync(entityQuery, CancellationToken.None);
+
+            // Report status of every entity
+            foreach (var entity in foundEntities.Entities)
+            {
+                await durableEntityClient.SignalEntityAsync<IKubernetesApplicationDurableEntity>(entity.EntityId, proxy => proxy.ReportCurrentInstanceCount());
             }
         }
     }

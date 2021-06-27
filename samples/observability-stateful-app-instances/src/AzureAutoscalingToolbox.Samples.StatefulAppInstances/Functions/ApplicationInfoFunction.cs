@@ -23,8 +23,8 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
             }
 
             // Get the current state of our application entity
-            var entityId = new EntityId(ApplicationEntity.EntityName, applicationId);
-            var appIdentity = await durableEntityClient.ReadEntityStateAsync<ApplicationEntity>(entityId);
+            var entityId = new EntityId(GenericApplicationEntity.EntityName, applicationId);
+            var appIdentity = await durableEntityClient.ReadEntityStateAsync<GenericApplicationEntity>(entityId);
 
             // If it doesn't exist, return HTTP 404
             if (appIdentity.EntityExists == false)

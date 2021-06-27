@@ -11,13 +11,13 @@ using Newtonsoft.Json;
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class ApplicationEntity : IApplicationDurableEntity
+    public class GenericApplicationEntity : IGenericApplicationDurableEntity
     {
         public const string EntityName = "application-entity";
         private const string AppScalingInEventName = "App Scaling In";
         private const string AppScalingOutEventName = "App Scaling Out";
 
-        private readonly ILogger<ApplicationEntity> _logger;
+        private readonly ILogger<GenericApplicationEntity> _logger;
 
         [JsonProperty("instanceCount")]
         public int InstanceCount { get; set; }
@@ -26,7 +26,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         public string Name { get; set; }
 
         // This constructor is used for all signal operations
-        public ApplicationEntity(EntityId entityId, ILogger<ApplicationEntity> logger)
+        public GenericApplicationEntity(EntityId entityId, ILogger<GenericApplicationEntity> logger)
         {
             Guard.NotNull(logger, nameof(logger));
 
@@ -36,9 +36,9 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         }
 
         // This constructor is used to read state
-        public ApplicationEntity()
+        public GenericApplicationEntity()
         {
-            _logger = NullLogger<ApplicationEntity>.Instance;
+            _logger = NullLogger<GenericApplicationEntity>.Instance;
         }
 
         /// <summary>
@@ -81,6 +81,6 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         }
 
         [FunctionName(EntityName)]
-        public static Task Run([EntityTrigger] IDurableEntityContext ctx) => ctx.DispatchAsync<ApplicationEntity>(ctx.EntityId);
+        public static Task Run([EntityTrigger] IDurableEntityContext ctx) => ctx.DispatchAsync<GenericApplicationEntity>(ctx.EntityId);
     }
 }
