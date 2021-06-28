@@ -1,12 +1,14 @@
 ---
 layout: default
-title: Stateful App Instances
+title: Autoscaling Over Time Dashboard
 parent: Samples
+redirect_from:
+  - /samples/Stateful-App-Instances.html
 ---
 
-## Stateful App Instances
+## Autoscaling Over Time Dashboard
 
-[GitHub](https://github.com/tomkerkhove/azure-autoscaling-toolbox/tree/main/samples/observability-stateful-app-instances){: .btn }
+[GitHub](https://github.com/tomkerkhove/azure-autoscaling-toolbox/tree/main/samples/autoscaling-over-time-dashboard){: .btn }
 
 Leverage scaling-over-time dashboarding for your application autoscaling with Azure Durable Functions. 📊
 
@@ -19,4 +21,4 @@ For every application in your platform, a durable entity is available that allow
 
 Here's a high-level overview:
 
-![](../media/samples/stateful-app-instances.png)
+![](../media/samples/autoscaling-over-time-dashboard.png)

@@ -30,6 +30,7 @@ github_username:  tomkerkhove
 theme: just-the-docs
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 
 # Theme settings
 # All settings can be found on https://pmarsceill.github.io/just-the-docs/docs/configuration/
