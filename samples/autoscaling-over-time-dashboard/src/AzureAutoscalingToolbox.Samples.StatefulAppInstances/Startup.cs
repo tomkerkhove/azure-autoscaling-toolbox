@@ -35,6 +35,13 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances
             });
 
             var instrumentationKey = config.GetValue<string>("APPLICATIONINSIGHTS_INSTRUMENTATIONKEY");
+
+            // This is a workaround for an Azure Function issue
+            if (string.IsNullOrWhiteSpace(instrumentationKey))
+            {
+                instrumentationKey = config.GetValue<string>("APPINSIGHTS_INSTRUMENTATIONKEY");
+            }
+
             var configuration = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
