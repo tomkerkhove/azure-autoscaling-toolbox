@@ -22,7 +22,7 @@ title: Azure Autoscale Toolbox
 email: kerkhove.tom@gmail.com
 description: A toolbox to leverage observability for autoscaling in Microsoft Azure. 🧰
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://azure-autoscaling-toolbox.tomkerkhove.be/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://azure-autoscaling-toolbox.cloud/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: tomkerkhove
 github_username:  tomkerkhove
 
@@ -30,6 +30,7 @@ github_username:  tomkerkhove
 theme: just-the-docs
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 
 # Theme settings
 # All settings can be found on https://pmarsceill.github.io/just-the-docs/docs/configuration/

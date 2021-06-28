@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-    - 'samples/observability-stateful-app-instances/**'
+    - 'samples/autoscaling-over-time-dashboard/**'
   workflow_dispatch:
 
 env:
@@ -26,7 +26,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Create Azure Function Artifact
-      run: dotnet publish ./samples/observability-stateful-app-instances/src/AzureAutoscalingToolbox.Samples.StatefulAppInstances --configuration Release --output ${{ env.OUTPUT_PATH }}
+      run: dotnet publish ./samples/autoscaling-over-time-dashboard/src/AzureAutoscalingToolbox.Samples.StatefulAppInstances --configuration Release --output ${{ env.OUTPUT_PATH }}
 
     - name: Publish Azure Function Artifact
       uses: actions/upload-artifact@v1

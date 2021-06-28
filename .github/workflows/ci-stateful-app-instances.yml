@@ -2,7 +2,7 @@ name: CI - Stateful Application Instances
 on:
   pull_request:
     paths:
-    - 'samples/observability-stateful-app-instances/**'
+    - 'samples/autoscaling-over-time-dashboard/**'
   
 jobs:
   solution:
@@ -11,4 +11,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build Solution
-      run: dotnet build ./samples/observability-stateful-app-instances/src/AzureAutoscalingToolbox.Samples.sln --configuration Release
+      run: dotnet build ./samples/autoscaling-over-time-dashboard/src/AzureAutoscalingToolbox.Samples.sln --configuration Release
