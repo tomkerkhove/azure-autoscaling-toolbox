@@ -9,7 +9,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
 {
     public class ReportCurrentApplicationInstancesFunction
     {
-        [FunctionName("report-current-app-instances")]
+        [FunctionName("report-current-generic-app-instances")]
         public async Task ReportAppInstances([TimerTrigger("0 */5 * * * *")] TimerInfo timerInfo,
             [DurableClient] IDurableEntityClient durableEntityClient)
         {

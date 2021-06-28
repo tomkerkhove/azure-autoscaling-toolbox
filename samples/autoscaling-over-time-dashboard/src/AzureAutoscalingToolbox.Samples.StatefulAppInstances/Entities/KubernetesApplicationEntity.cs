@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Identifiers;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Interfaces;
 using GuardNet;
 using Microsoft.Azure.WebJobs;
@@ -22,8 +23,11 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         [JsonProperty("instanceCount")]
         public int InstanceCount { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("deploymentName")]
+        public string DeploymentName { get; set; }
+
+        [JsonProperty("namespace")]
+        public string Namespace { get; set; }
 
         // This constructor is used for all signal operations
         public KubernetesApplicationEntity(EntityId entityId, ILogger<KubernetesApplicationEntity> logger)
@@ -32,7 +36,9 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 
             _logger = logger;
 
-            Name = entityId.EntityKey;
+            var kubernetesEntityIdentifier = KubernetesEntityIdentifier.ParseFromString(entityId.EntityKey);
+            DeploymentName = kubernetesEntityIdentifier.DeploymentName;
+            Namespace = kubernetesEntityIdentifier.Namespace;
         }
 
         // This constructor is used to read state
@@ -75,8 +81,11 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         {
             var contextInformation = new Dictionary<string, object>
             {
-                {"AppName", Name}
+                {"AppName", DeploymentName},
+                {"Namespace", Namespace},
+                {"Runtime", "Kubernetes"},
             };
+
             return contextInformation;
         }
 
