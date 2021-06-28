@@ -11,4 +11,4 @@ For every application in your platform, a durable entity is available that allow
 
 Here's a high-level overview:
 
-![](../../docs/media/samples/stateful-app-instances.png)
+![](../../docs/media/samples/autoscaling-over-time-dashboard.png)
