@@ -4,10 +4,10 @@ A toolbox to leverage production-grade autoscaling in Microsoft Azure. 🧰
 
 ## Overview
 
-- [Autoscalers](https://azure-autoscaling-toolbox.tomkerkhove.be/autoscalers/)
-- [Observability](https://azure-autoscaling-toolbox.tomkerkhove.be/observability/)
-- [Limitations](https://azure-autoscaling-toolbox.tomkerkhove.be/limitations/)
-- [Samples](https://azure-autoscaling-toolbox.tomkerkhove.be/samples/)
+- [Autoscalers](https://azure-autoscaling-toolbox.cloud/autoscalers/)
+- [Observability](https://azure-autoscaling-toolbox.cloud/observability/)
+- [Limitations](https://azure-autoscaling-toolbox.cloud/limitations/)
+- [Samples](https://azure-autoscaling-toolbox.cloud/samples/)
 
 ## License
 
