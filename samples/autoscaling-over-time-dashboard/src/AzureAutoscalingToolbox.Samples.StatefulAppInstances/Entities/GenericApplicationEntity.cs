@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class GenericApplicationEntity : IGenericApplicationDurableEntity
+    public class GenericApplicationEntity : IGenericApplicationEntity
     {
         public const string EntityName = "application-entity";
         private const string AppScalingInEventName = "App Scaling In";

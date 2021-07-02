@@ -12,39 +12,45 @@ using Newtonsoft.Json;
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class KubernetesApplicationEntity : IApplicationEntity
+    public class AppServiceApplicationEntity : IApplicationEntity
     {
-        public const string EntityName = "kubernetes-application-entity";
+        public const string EntityName = "app-service-application-entity";
         private const string AppScalingInEventName = "App Scaling In";
         private const string AppScalingOutEventName = "App Scaling Out";
 
-        private readonly ILogger<KubernetesApplicationEntity> _logger;
+        private readonly ILogger<AppServiceApplicationEntity> _logger;
+
+        [JsonProperty("subscriptionName")]
+        public string SubscriptionId { get; set; }
+
+        [JsonProperty("resourceGroup")]
+        public string ResourceGroup { get; set; }
+
+        [JsonProperty("region")]
+        public string Region { get; set; }
 
         [JsonProperty("instanceCount")]
         public int InstanceCount { get; set; }
 
-        [JsonProperty("deploymentName")]
-        public string DeploymentName { get; set; }
-
-        [JsonProperty("namespace")]
-        public string Namespace { get; set; }
+        [JsonProperty("planName")]
+        public string PlanName { get; set; }
 
         // This constructor is used for all signal operations
-        public KubernetesApplicationEntity(EntityId entityId, ILogger<KubernetesApplicationEntity> logger)
+        public AppServiceApplicationEntity(EntityId entityId, ILogger<AppServiceApplicationEntity> logger)
         {
             Guard.NotNull(logger, nameof(logger));
 
             _logger = logger;
 
-            var kubernetesEntityIdentifier = KubernetesEntityIdentifier.ParseFromString(entityId.EntityKey);
+            var kubernetesEntityIdentifier = AppServiceEntityIdentifier.ParseFromString(entityId.EntityKey);
             DeploymentName = kubernetesEntityIdentifier.DeploymentName;
             Namespace = kubernetesEntityIdentifier.Namespace;
         }
 
         // This constructor is used to read state
-        public KubernetesApplicationEntity()
+        public AppServiceApplicationEntity()
         {
-            _logger = NullLogger<KubernetesApplicationEntity>.Instance;
+            _logger = NullLogger<AppServiceApplicationEntity>.Instance;
         }
 
         /// <summary>
@@ -81,15 +87,16 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         {
             var contextInformation = new Dictionary<string, object>
             {
-                {"AppName", DeploymentName},
-                {"Namespace", Namespace},
-                {"Runtime", "Kubernetes"},
+                {"SubscriptionId", SubscriptionId},
+                {"ResourceGroup", ResourceGroup},
+                {"Region", Region},
+                {"Runtime", "Azure App Service"},
             };
 
             return contextInformation;
         }
 
         [FunctionName(EntityName)]
-        public static Task Run([EntityTrigger] IDurableEntityContext ctx) => ctx.DispatchAsync<KubernetesApplicationEntity>(ctx.EntityId);
+        public static Task Run([EntityTrigger] IDurableEntityContext ctx) => ctx.DispatchAsync<AppServiceApplicationEntity>(ctx.EntityId);
     }
 }

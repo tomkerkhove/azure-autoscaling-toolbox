@@ -23,7 +23,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
             // Report status of every entity
             foreach (var entity in foundEntities.Entities)
             {
-                await durableEntityClient.SignalEntityAsync<IGenericApplicationDurableEntity>(entity.EntityId, proxy => proxy.ReportCurrentInstanceCount());
+                await durableEntityClient.SignalEntityAsync<IGenericApplicationEntity>(entity.EntityId, proxy => proxy.ReportCurrentInstanceCount());
             }
         }
 
@@ -41,7 +41,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
             // Report status of every entity
             foreach (var entity in foundEntities.Entities)
             {
-                await durableEntityClient.SignalEntityAsync<IKubernetesApplicationDurableEntity>(entity.EntityId, proxy => proxy.ReportCurrentInstanceCount());
+                await durableEntityClient.SignalEntityAsync<IKubernetesApplicationEntity>(entity.EntityId, proxy => proxy.ReportCurrentInstanceCount());
             }
         }
     }
