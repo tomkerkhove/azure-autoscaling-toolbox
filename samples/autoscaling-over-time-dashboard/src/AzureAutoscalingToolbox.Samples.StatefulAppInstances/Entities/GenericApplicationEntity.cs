@@ -11,11 +11,9 @@ using Newtonsoft.Json;
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class GenericApplicationEntity : IGenericApplicationDurableEntity
+    public class GenericApplicationEntity : ApplicationEntity, IGenericApplicationDurableEntity
     {
         public const string EntityName = "application-entity";
-        private const string AppScalingInEventName = "App Scaling In";
-        private const string AppScalingOutEventName = "App Scaling Out";
 
         private readonly ILogger<GenericApplicationEntity> _logger;
 
@@ -27,6 +25,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 
         // This constructor is used for all signal operations
         public GenericApplicationEntity(EntityId entityId, ILogger<GenericApplicationEntity> logger)
+            : base(logger)
         {
             Guard.NotNull(logger, nameof(logger));
 
@@ -37,8 +36,8 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 
         // This constructor is used to read state
         public GenericApplicationEntity()
+            : base(NullLogger<GenericApplicationEntity>.Instance)
         {
-            _logger = NullLogger<GenericApplicationEntity>.Instance;
         }
 
         /// <summary>
@@ -54,29 +53,19 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
             ReportCurrentInstanceCount();
         }
 
-        private void ReportScalingAction(int currentInstanceCount, int newInstanceCount)
-        {
-            var eventName = currentInstanceCount < newInstanceCount ? AppScalingOutEventName : AppScalingInEventName;
-            var contextInformation = GetContextInformation();
-            
-            _logger.LogEvent(eventName, contextInformation);
-        }
-
         /// <summary>
         ///     Report the current instance count as a metric
         /// </summary>
         public void ReportCurrentInstanceCount()
         {
-            var contextInformation = GetContextInformation();
-            _logger.LogMetric("App Instances", InstanceCount, contextInformation);
+            ReportCurrentInstanceCount(InstanceCount);
         }
 
-        private Dictionary<string, object> GetContextInformation()
+        protected virtual Dictionary<string, object> GetContextInformation()
         {
-            var contextInformation = new Dictionary<string, object>
-            {
-                {"AppName", Name}
-            };
+            var contextInformation = base.GetContextInformation();
+            contextInformation.TryAdd("AppName", Name);
+
             return contextInformation;
         }
 
