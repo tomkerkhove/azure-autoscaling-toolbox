@@ -55,7 +55,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 
         public void ReportCurrentInstanceCount()
         {
-            ReportCurrentInstanceCount(InstanceCount);
+            ReportCurrentInstanceCountAsMetric(InstanceCount);
         }
 
         protected override Dictionary<string, object> GetContextInformation()

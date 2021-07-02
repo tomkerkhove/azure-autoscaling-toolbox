@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Identifiers;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Interfaces;
 using GuardNet;
 using Microsoft.Azure.WebJobs;
@@ -11,27 +12,41 @@ using Newtonsoft.Json;
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class GenericApplicationEntity : ApplicationEntity, IGenericApplicationEntity
+    public class GenericApplicationEntity : ApplicationEntity, IApplicationEntity
     {
-        public const string EntityName = "application-entity";
+        public const string EntityName = "generic-application-entity";
+        private const string AppScalingInEventName = "App Scaling In";
+        private const string AppScalingOutEventName = "App Scaling Out";
 
-        private readonly ILogger<GenericApplicationEntity> _logger;
+        [JsonProperty("subscriptionName")]
+        public string SubscriptionId { get; set; }
+
+        [JsonProperty("resourceGroupName")]
+        public string ResourceGroupName { get; set; }
+
+        [JsonProperty("region")]
+        public string Region { get; set; }
 
         [JsonProperty("instanceCount")]
         public int InstanceCount { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("resourceName")]
+        public string ResourceName { get; set; }
+
+        [JsonProperty("runtime")]
+        public string Runtime { get; set; }
 
         // This constructor is used for all signal operations
-        public GenericApplicationEntity(EntityId entityId, ILogger<GenericApplicationEntity> logger)
+        public GenericApplicationEntity(EntityId entityId, ILogger<GenericEntityIdentifier> logger)
             : base(logger)
-        {
-            Guard.NotNull(logger, nameof(logger));
-
-            _logger = logger;
-
-            Name = entityId.EntityKey;
+        {   
+            var entityIdentifier = GenericEntityIdentifier.ParseFromString(entityId.EntityKey);
+            
+            SubscriptionId = entityIdentifier.SubscriptionId;
+            ResourceGroupName = entityIdentifier.ResourceGroupName;
+            Region = entityIdentifier.Region;
+            Runtime = entityIdentifier.Runtime;
+            ResourceName = entityIdentifier.ResourceName;
         }
 
         // This constructor is used to read state
@@ -58,13 +73,17 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         /// </summary>
         public void ReportCurrentInstanceCount()
         {
-            ReportCurrentInstanceCount(InstanceCount);
+            ReportCurrentInstanceCountAsMetric(InstanceCount);
         }
 
-        protected virtual Dictionary<string, object> GetContextInformation()
+        protected override Dictionary<string, object> GetContextInformation()
         {
             var contextInformation = base.GetContextInformation();
-            contextInformation.TryAdd("AppName", Name);
+            contextInformation.TryAdd("SubscriptionId", SubscriptionId);
+            contextInformation.TryAdd("ResourceGroup", ResourceGroupName);
+            contextInformation.TryAdd("AppName", ResourceName);
+            contextInformation.TryAdd("Region", Region);
+            contextInformation.TryAdd("Runtime", Runtime);
 
             return contextInformation;
         }

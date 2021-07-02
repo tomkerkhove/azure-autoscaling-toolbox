@@ -21,7 +21,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         /// <summary>
         ///     Report the current instance count as a metric
         /// </summary>
-        protected virtual void ReportCurrentInstanceCount(int instanceCount)
+        protected virtual void ReportCurrentInstanceCountAsMetric(int instanceCount)
         {
             var contextInformation = GetContextInformation();
             Logger.LogMetric("App Instances", instanceCount, contextInformation);
