@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Identifiers;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Interfaces;
+using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Models;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Events.AzureMonitorAutoscale;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions.Foundation;
 using Microsoft.AspNetCore.Http;
@@ -56,7 +57,18 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
 
             // Notify scaling occurred for application
             var appRuntime = DetermineApplicationRuntime(resource.Type);
-            var entityId = new GenericEntityIdentifier(scalingInformation.ScaleTarget.SubscriptionId, scalingInformation.ScaleTarget.ResourceGroupName, resource.Region, appRuntime, resource.Name).GetEntityId();
+            var entityId = new GenericEntityIdentifier(appRuntime, resource.Name).GetEntityId();
+            
+            // Store the application info for enriching metrics
+            var appInfo = new GenericAppInfo
+            {
+                SubscriptionId = scalingInformation.ScaleTarget.SubscriptionId,
+                ResourceGroupName = scalingInformation.ScaleTarget.ResourceGroupName,
+                Region = resource.Region
+            };
+            await durableEntityClient.SignalEntityAsync<IGenericApplicationEntity>(entityId, proxy => proxy.StoreMetadataAsync(appInfo));
+
+            // Scale the entity!
             await durableEntityClient.SignalEntityAsync<IGenericApplicationEntity>(entityId, proxy => proxy.Scale(scalingInformation.Capacity.New));
 
             return Ok();

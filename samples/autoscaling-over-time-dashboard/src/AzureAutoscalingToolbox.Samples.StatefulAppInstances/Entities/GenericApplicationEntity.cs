@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Identifiers;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Interfaces;
+using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Models;
 using GuardNet;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
@@ -12,7 +13,7 @@ using Newtonsoft.Json;
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class GenericApplicationEntity : ApplicationEntity, IApplicationEntity
+    public class GenericApplicationEntity : ApplicationEntity, IGenericApplicationEntity
     {
         public const string EntityName = "generic-application-entity";
         private const string AppScalingInEventName = "App Scaling In";
@@ -42,9 +43,6 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
         {   
             var entityIdentifier = GenericEntityIdentifier.ParseFromString(entityId.EntityKey);
             
-            SubscriptionId = entityIdentifier.SubscriptionId;
-            ResourceGroupName = entityIdentifier.ResourceGroupName;
-            Region = entityIdentifier.Region;
             Runtime = entityIdentifier.Runtime;
             ResourceName = entityIdentifier.ResourceName;
         }
@@ -90,5 +88,19 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 
         [FunctionName(EntityName)]
         public static Task Run([EntityTrigger] IDurableEntityContext ctx) => ctx.DispatchAsync<GenericApplicationEntity>(ctx.EntityId);
+
+        public Task StoreMetadataAsync(GenericAppInfo genericAppInfo)
+        {
+            Guard.NotNull(genericAppInfo, nameof(genericAppInfo));
+            Guard.NotNullOrWhitespace(genericAppInfo.SubscriptionId, nameof(genericAppInfo.SubscriptionId));
+            Guard.NotNullOrWhitespace(genericAppInfo.ResourceGroupName, nameof(genericAppInfo.ResourceGroupName));
+            Guard.NotNullOrWhitespace(genericAppInfo.Region, nameof(genericAppInfo.Region));
+
+            SubscriptionId = genericAppInfo.SubscriptionId;
+            ResourceGroupName = genericAppInfo.ResourceGroupName;
+            Region = genericAppInfo.Region;
+
+            return Task.CompletedTask;
+        }
     }
 }

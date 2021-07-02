@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class KubernetesApplicationEntity : ApplicationEntity, IApplicationEntity
+    public class KubernetesApplicationEntity : ApplicationEntity, IKubernetesApplicationEntity
     {
         public const string EntityName = "kubernetes-application-entity";
 

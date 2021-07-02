@@ -16,15 +16,22 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
         public async Task<IActionResult> GetInfoForGenericApp([HttpTrigger(AuthorizationLevel.Function, "get", Route = "v1/apps/generic/instances")] HttpRequest request,
             [DurableClient] IDurableEntityClient durableEntityClient)
         {
-            // Determine the application id
-            var rawEntityId = request.Query["entityId"];
-            if (string.IsNullOrWhiteSpace(rawEntityId))
+            // Determine the application name
+            var applicationName = request.Query["appName"];
+            if (string.IsNullOrWhiteSpace(applicationName))
             {
-                return BadRequest("No application id was specified");
+                return BadRequest("No application name was specified");
+            }
+
+            // Determine the runtime
+            var runtime = request.Query["runtime"];
+            if (string.IsNullOrWhiteSpace(runtime))
+            {
+                return BadRequest("No runtime was specified");
             }
 
             // Get the current state of our application entity
-            var entityId = new EntityId(GenericApplicationEntity.EntityName, rawEntityId);
+            var entityId = new GenericEntityIdentifier(runtime, applicationName).GetEntityId();
             var appIdentity = await durableEntityClient.ReadEntityStateAsync<GenericApplicationEntity>(entityId);
 
             // If it doesn't exist, return HTTP 404
@@ -41,14 +48,14 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
         public async Task<IActionResult> GetInfoForKubernetesApp([HttpTrigger(AuthorizationLevel.Function, "get", Route = "v1/apps/kubernetes/instances")] HttpRequest request,
             [DurableClient] IDurableEntityClient durableEntityClient)
         {
-            // Determine the application id
+            // Determine the deployment name
             var deploymentName = request.Query["deploymentName"];
             if (string.IsNullOrWhiteSpace(deploymentName))
             {
                 return BadRequest("No deployment name was specified");
             }
 
-            // Determine the application id
+            // Determine the namespace name
             var namespaceName = request.Query["namespaceName"];
             if (string.IsNullOrWhiteSpace(namespaceName))
             {
