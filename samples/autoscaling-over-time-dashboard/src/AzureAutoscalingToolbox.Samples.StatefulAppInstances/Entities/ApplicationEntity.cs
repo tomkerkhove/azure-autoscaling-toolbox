@@ -1,86 +1,44 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Interfaces;
-using GuardNet;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.DurableTask;
+﻿using GuardNet;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
-using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 {
-    [JsonObject(MemberSerialization.OptIn)]
-    public class ApplicationEntity : IApplicationDurableEntity
+    public class ApplicationEntity
     {
-        public const string EntityName = "application-entity";
         private const string AppScalingInEventName = "App Scaling In";
         private const string AppScalingOutEventName = "App Scaling Out";
 
-        private readonly ILogger<ApplicationEntity> _logger;
+        protected ILogger Logger { get; }
 
-        [JsonProperty("instanceCount")]
-        public int InstanceCount { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        // This constructor is used for all signal operations
-        public ApplicationEntity(EntityId entityId, ILogger<ApplicationEntity> logger)
+        public ApplicationEntity(ILogger logger)
         {
-            Guard.NotNull(logger, nameof(logger));
+            Guard.NotNull(logger, nameof(Logger));
 
-            _logger = logger;
-
-            Name = entityId.EntityKey;
-        }
-
-        // This constructor is used to read state
-        public ApplicationEntity()
-        {
-            _logger = NullLogger<ApplicationEntity>.Instance;
-        }
-
-        /// <summary>
-        ///     Our application is scaling
-        /// </summary>
-        /// <param name="newInstanceCount">New instance count of the application</param>
-        public void Scale(int newInstanceCount)
-        {
-            ReportScalingAction(InstanceCount, newInstanceCount);
-
-            InstanceCount = newInstanceCount;
-
-            ReportCurrentInstanceCount();
-        }
-
-        private void ReportScalingAction(int currentInstanceCount, int newInstanceCount)
-        {
-            var eventName = currentInstanceCount < newInstanceCount ? AppScalingOutEventName : AppScalingInEventName;
-            var contextInformation = GetContextInformation();
-            
-            _logger.LogEvent(eventName, contextInformation);
+            Logger = logger;
         }
 
         /// <summary>
         ///     Report the current instance count as a metric
         /// </summary>
-        public void ReportCurrentInstanceCount()
+        protected virtual void ReportCurrentInstanceCountAsMetric(int instanceCount)
         {
             var contextInformation = GetContextInformation();
-            _logger.LogMetric("App Instances", InstanceCount, contextInformation);
+            Logger.LogMetric("App Instances", instanceCount, contextInformation);
         }
 
-        private Dictionary<string, object> GetContextInformation()
+        protected virtual void ReportScalingAction(int currentInstanceCount, int newInstanceCount)
         {
-            var contextInformation = new Dictionary<string, object>
-            {
-                {"AppName", Name}
-            };
+            var eventName = currentInstanceCount < newInstanceCount ? AppScalingOutEventName : AppScalingInEventName;
+            var contextInformation = GetContextInformation();
+
+            Logger.LogEvent(eventName, contextInformation);
+        }
+
+        protected virtual Dictionary<string, object> GetContextInformation()
+        {
+            var contextInformation = new Dictionary<string, object>();
             return contextInformation;
         }
-
-        [FunctionName(EntityName)]
-        public static Task Run([EntityTrigger] IDurableEntityContext ctx) => ctx.DispatchAsync<ApplicationEntity>(ctx.EntityId);
     }
 }

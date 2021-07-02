@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities;
+using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Identifiers;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Interfaces;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Extensions;
 using AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions.Foundation;
@@ -51,8 +51,8 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
             }
 
             // Notify scaling occurred for application
-            var entityId = new EntityId(ApplicationEntity.EntityName, scalingInformation.Deployment?.Name);
-            await durableEntityClient.SignalEntityAsync<IApplicationDurableEntity>(entityId, proxy => proxy.Scale(scalingInformation.Replicas.New));
+            var entityId = new KubernetesEntityIdentifier(scalingInformation.Deployment.Name, scalingInformation.Deployment.Namespace).GetEntityId();
+            await durableEntityClient.SignalEntityAsync<IKubernetesApplicationEntity>(entityId, proxy => proxy.Scale(scalingInformation.Replicas.New));
 
             return Ok();
         }
