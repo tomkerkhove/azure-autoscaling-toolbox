@@ -1,6 +1,6 @@
 ﻿namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Interfaces
 {
-    public interface IGenericApplicationDurableEntity : IApplicationDurableEntity
+    public interface IKubernetesApplicationEntity : IApplicationEntity
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities.Interfaces
 {
-    public interface IApplicationDurableEntity
+    public interface IApplicationEntity
     {
         /// <summary>
         ///     Our application is scaling

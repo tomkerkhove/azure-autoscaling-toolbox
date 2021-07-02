@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class GenericApplicationEntity : ApplicationEntity, IGenericApplicationDurableEntity
+    public class GenericApplicationEntity : ApplicationEntity, IGenericApplicationEntity
     {
         public const string EntityName = "application-entity";
 

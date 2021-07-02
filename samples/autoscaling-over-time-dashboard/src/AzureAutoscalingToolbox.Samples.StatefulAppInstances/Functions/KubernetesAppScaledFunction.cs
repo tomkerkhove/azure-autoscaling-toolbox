@@ -52,7 +52,7 @@ namespace AzureAutoscalingToolbox.Samples.StatefulAppInstances.Functions
 
             // Notify scaling occurred for application
             var entityId = new KubernetesEntityIdentifier(scalingInformation.Deployment.Name, scalingInformation.Deployment.Namespace).GetEntityId();
-            await durableEntityClient.SignalEntityAsync<IKubernetesApplicationDurableEntity>(entityId, proxy => proxy.Scale(scalingInformation.Replicas.New));
+            await durableEntityClient.SignalEntityAsync<IKubernetesApplicationEntity>(entityId, proxy => proxy.Scale(scalingInformation.Replicas.New));
 
             return Ok();
         }
