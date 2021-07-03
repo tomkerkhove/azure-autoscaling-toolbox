@@ -8,28 +8,28 @@ Leverage scaling-over-time dashboarding for your application autoscaling with Az
 
 Use `App Instances` metrics to visualise how the applications in your platform are scaling.
 
-![](./media/general-overview.png)
+![](../../docs/media/samples/autoscaling-over-time-dashboard/general-overview.png)
 
 Here are a few more examples:
 
 <details>
   <summary>Instances per application</summary>
   
-![](./media/overview-per-application.png)
+![](../../docs/media/samples/autoscaling-over-time-dashboard/overview-per-application.png)
 
 </details>
 
 <details>
   <summary>Application Instances per runtime</summary>
   
-![](./media/overview-per-runtime.png)
+![](../../docs/media/samples/autoscaling-over-time-dashboard/overview-per-runtime.png)
 
 </details>
 
 <details>
   <summary>Application Instances per Kubernetes namespace</summary>
   
-![](./media/overview-per-kubernetes-namespace.png)
+![](../../docs/media/samples/autoscaling-over-time-dashboard/overview-per-kubernetes-namespace.png)
 
 </details>
 
@@ -46,7 +46,7 @@ For every application in your platform, a durable entity is available that allow
 
 Here's a high-level overview:
 
-![](../../docs/media/samples/autoscaling-over-time-dashboard.png)
+![](../../docs/media/samples/autoscaling-over-time-dashboard/how-it-works.png)
 
 ## Gain deeper insights with dimensions
 
