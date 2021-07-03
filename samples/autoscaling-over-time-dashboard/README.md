@@ -10,23 +10,7 @@ Use `App Instances` metrics to visualise how the applications in your platform a
 
 ![](./media/general-overview.png)
 
-## Gain deeper insights with dimensions
-
-Want to have more details? Use the various dimensions that are provided:
-
-- For Kubernetes applications, we provide:
-  - `AppName` - Name of the deployment in the cluster
-  - `Namespace` - Name of the Kubernetes namespace
-  - `Runtime` - Fixed to Kubernets
-
-- For generic applications scaled with Azure Monitor, we provide:
-  - `AppName` - Name of the Azure resource
-  - `SubscriptionId` - Name of the Azure subscription
-  - `ResourceGroup` - Name of the Azure resource group
-  - `Region` - Name of the Azure region
-  - `Runtime` - Name or type of Azure service hosting your application, for example `Azure App Service`
-
-Here are a few examples:
+Here are a few more examples:
 
 <details>
   <summary>Instances per application</summary>
@@ -49,6 +33,8 @@ Here are a few examples:
 
 </details>
 
+Learn more about the available dimensions below.
+
 ## How does it work?
 
 For every application in your platform, a durable entity is available that allows you to:
@@ -61,6 +47,22 @@ For every application in your platform, a durable entity is available that allow
 Here's a high-level overview:
 
 ![](../../docs/media/samples/autoscaling-over-time-dashboard.png)
+
+## Gain deeper insights with dimensions
+
+Want to have a more detailed overview? Use the various dimensions that are provided:
+
+- For Kubernetes applications, we provide:
+  - `AppName` - Name of the deployment in the cluster
+  - `Namespace` - Name of the Kubernetes namespace
+  - `Runtime` - Fixed to Kubernets
+
+- For generic applications scaled with Azure Monitor, we provide:
+  - `AppName` - Name of the Azure resource
+  - `SubscriptionId` - Name of the Azure subscription
+  - `ResourceGroup` - Name of the Azure resource group
+  - `Region` - Name of the Azure region
+  - `Runtime` - Name or type of Azure service hosting your application, for example `Azure App Service`
 
 ## API Overview
 
