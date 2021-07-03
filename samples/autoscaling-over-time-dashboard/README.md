@@ -72,7 +72,8 @@ You can import [our Postman collection](./resources/Azure-Autoscaling-Toolbox.po
 
 ### Kubernetes Scaling Event
 
-POST https://{HostUri}/api/v1/autoscale/kubernetes/app
+**POST** `https://{HostUri}/api/v1/autoscale/kubernetes/app`
+
 Content-Type: application/cloudevents
 
 <details>
@@ -116,7 +117,8 @@ HTTP 200
 
 ### Azure Monitor Scaling Event
 
-POST https://{HostUri}/api/v1/autoscale/azure-monitor/app
+**POST** `https://{HostUri}/api/v1/autoscale/azure-monitor/app`
+
 Content-Type: application/cloudevents
 
 <details>
@@ -165,7 +167,7 @@ HTTP 200
 
 ### Get Instance Count for Kubernetes App
 
-GET https://{HostUri}/api/v1/apps/kubernetes/instances?deploymentName={DeploymentName}&namespaceName={KuberntesNamespace}
+**GET** `https://{HostUri}/api/v1/apps/kubernetes/instances?deploymentName={DeploymentName}&namespaceName={KuberntesNamespace}`
 
 <details>
   <summary>Response</summary>
@@ -181,7 +183,7 @@ HTTP 200
 
 ### Get Instance Count for Generic App
 
-GET https://{HostUri}/api/v1/apps/generic/instances?appName={AppName}&runtime={RuntimeName}
+**GET** `https://{HostUri}/api/v1/apps/generic/instances?appName={AppName}&runtime={RuntimeName}`
 
 <details>
   <summary>Response</summary>
