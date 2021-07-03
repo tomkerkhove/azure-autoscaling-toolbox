@@ -33,7 +33,7 @@ Here are a few more examples:
 
 </details>
 
-Learn more about the available dimensions below.
+Learn more about the available dimensions [below](#gain-deeper-insights-with-dimensions).
 
 ## How does it work?
 
@@ -41,7 +41,7 @@ For every application in your platform, a durable entity is available that allow
 
 - Receive CloudEvents for Azure Monitor Autoscale events (based on [Azure Event Grid adapter for Azure Monitor Autoscale](https://github.com/tomkerkhove/azure-monitor-autoscale-to-event-grid-adapter))
 - Receive CloudEvents for Kubernetes application events (based on [Kubernetes Event Grid Bridge]([https://docs.k8](https://docs.k8s-event-grid-bridge.io/)))
-- Automatically report current instance count every 5 minutes
+- Automatically report current instance count every 5 minutes with [various dimensions](#gain-deeper-insights-with-dimensions)
 - Get the current instance count for a given app
 
 Here's a high-level overview:
