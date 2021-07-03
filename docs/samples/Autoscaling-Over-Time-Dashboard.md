@@ -12,28 +12,27 @@ redirect_from:
 
 Leverage scaling-over-time dashboarding for your application autoscaling with Azure Durable Functions. 📊
 
-![](./media/general-overview.png)
+![](../media/samples/autoscaling-over-time-dashboard/general-overview.png)
 
 Here are a few more examples:
 
 <details>
   <summary>Instances per application</summary>
-  
-![](./media/overview-per-application.png)
 
+<img src="../media/samples/autoscaling-over-time-dashboard/overview-per-application.png" />
 </details>
 
 <details>
   <summary>Application Instances per runtime</summary>
-  
-![](./media/overview-per-runtime.png)
+
+<img src="../media/samples/autoscaling-over-time-dashboard/overview-per-runtime.png" />
 
 </details>
 
 <details>
   <summary>Application Instances per Kubernetes namespace</summary>
-  
-![](./media/overview-per-kubernetes-namespace.png)
+
+<img src="../media/samples/autoscaling-over-time-dashboard/overview-per-kubernetes-namespace.png" />
 
 </details>
 
