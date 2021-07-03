@@ -1,4 +1,4 @@
-name: CD - Stateful Application Instances
+name: CD - Autoscaling-over-time Dashboard (Repro)
 
 on:
   push:
@@ -39,7 +39,7 @@ jobs:
       env:
         AZURE_FUNCTIONAPP_NAME: azure-autoscaling-toolbox
       environment:
-        name: Stateful Application Instances (PRD)
+        name: Autoscaling-over-time Dashboard (Repro)
       runs-on: ubuntu-latest
       steps:
       - name: Download Artifact

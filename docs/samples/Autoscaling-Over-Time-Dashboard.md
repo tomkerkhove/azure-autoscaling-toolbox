@@ -17,20 +17,20 @@ Leverage scaling-over-time dashboarding for your application autoscaling with Az
 Here are a few more examples:
 
 <details>
-  <summary>Instances per application</summary>
+  <summary>Application instances by name</summary>
 
 <img src="../media/samples/autoscaling-over-time-dashboard/overview-per-application.png" />
 </details>
 
 <details>
-  <summary>Application Instances per runtime</summary>
+  <summary>Application instances per runtime</summary>
 
 <img src="../media/samples/autoscaling-over-time-dashboard/overview-per-runtime.png" />
 
 </details>
 
 <details>
-  <summary>Application Instances per Kubernetes namespace</summary>
+  <summary>Application instances per Kubernetes namespace</summary>
 
 <img src="../media/samples/autoscaling-over-time-dashboard/overview-per-kubernetes-namespace.png" />
 

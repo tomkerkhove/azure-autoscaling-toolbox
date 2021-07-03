@@ -13,21 +13,21 @@ Use `App Instances` metrics to visualise how the applications in your platform a
 Here are a few more examples:
 
 <details>
-  <summary>Instances per application</summary>
+  <summary>Application instances by name</summary>
   
 ![](../../docs/media/samples/autoscaling-over-time-dashboard/overview-per-application.png)
 
 </details>
 
 <details>
-  <summary>Application Instances per runtime</summary>
+  <summary>Application instances per runtime</summary>
   
 ![](../../docs/media/samples/autoscaling-over-time-dashboard/overview-per-runtime.png)
 
 </details>
 
 <details>
-  <summary>Application Instances per Kubernetes namespace</summary>
+  <summary>Application instances per Kubernetes namespace</summary>
   
 ![](../../docs/media/samples/autoscaling-over-time-dashboard/overview-per-kubernetes-namespace.png)
 

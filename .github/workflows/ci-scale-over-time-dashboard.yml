@@ -1,4 +1,4 @@
-name: CI - Stateful Application Instances
+name: CI - Autoscaling-over-time Dashboard
 on:
   pull_request:
     paths:
