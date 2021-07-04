@@ -12,6 +12,32 @@ redirect_from:
 
 Leverage scaling-over-time dashboarding for your application autoscaling with Azure Durable Functions. 📊
 
+![](../media/samples/autoscaling-over-time-dashboard/general-overview.png)
+
+Here are a few more examples:
+
+<details>
+  <summary>Application instances by name</summary>
+
+<img src="../media/samples/autoscaling-over-time-dashboard/overview-per-application.png" />
+</details>
+
+<details>
+  <summary>Application instances per runtime</summary>
+
+<img src="../media/samples/autoscaling-over-time-dashboard/overview-per-runtime.png" />
+
+</details>
+
+<details>
+  <summary>Application instances per Kubernetes namespace</summary>
+
+<img src="../media/samples/autoscaling-over-time-dashboard/overview-per-kubernetes-namespace.png" />
+
+</details>
+
+## How does it work?
+
 For every application in your platform, a durable entity is available that allows you to:
 
 - Receive CloudEvents for Azure Monitor Autoscale events (based on [Azure Event Grid adapter for Azure Monitor Autoscale](https://github.com/tomkerkhove/azure-monitor-autoscale-to-event-grid-adapter))
@@ -21,4 +47,4 @@ For every application in your platform, a durable entity is available that allow
 
 Here's a high-level overview:
 
-![](../media/samples/autoscaling-over-time-dashboard.png)
+![](../media/samples/autoscaling-over-time-dashboard/how-it-works.png)
