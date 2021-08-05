@@ -18,6 +18,10 @@ The scaling criteria allows you to define when to scale out and when to scale in
 
 Microsoft
 
+## Support
+
+TODO
+
 ## Observability
 
 Coming soon.
