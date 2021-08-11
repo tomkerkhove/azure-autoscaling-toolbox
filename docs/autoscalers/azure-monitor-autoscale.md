@@ -28,9 +28,12 @@ Yes, through Azure Support.
 
 ## Observability
 
-Coming soon.
-https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-troubleshoot
--[Webhooks and email](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-webhook-email)
+Azure Monitor Autoscale provides a variety of ways to gain insights on your autoscaling:
+
+- [Receive Webhooks & Emails](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-webhook-email)
+- [Visualize Metrics](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-troubleshoot#autoscale-metrics)
+- [View Autoscaling Events](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-troubleshoot#example-3---understanding-autoscale-events)
+- [View Autoscaling Logs](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-troubleshoot#autoscale-resource-logs)
 
 ## Supported Services
 
