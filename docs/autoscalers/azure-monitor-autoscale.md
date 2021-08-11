@@ -22,6 +22,14 @@ Learn more how to get started in the [documentation](https://docs.microsoft.com/
 
 Microsoft
 
+## Scaling Mechanism
+
+Scale out or in by adding or removing instances.
+
+## Deployment
+
+Available as a service and managed through ARM, REST API, Azure Portal, or Azure CLI.
+
 ## Support
 
 Yes, through Azure Support.
