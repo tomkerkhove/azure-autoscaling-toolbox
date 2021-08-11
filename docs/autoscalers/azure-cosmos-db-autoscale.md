@@ -11,7 +11,7 @@ parent: Autoscalers
 [Limitations](https://docs.microsoft.com/en-us/azure/cosmos-db/provision-throughput-autoscale#autoscale-limits){: .btn }
 [FAQ](https://docs.microsoft.com/en-us/azure/cosmos-db/autoscale-faq){: .btn }
 
-Azure Monitor Autoscale allows you to autoscale throughput of your database or collections.
+**Azure Cosmos DB Autoscale** allows you to autoscale throughput of your Azure Cosmos DB database or collections.
 
 Learn more how to get started in the [documentation](https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-provision-autoscale-throughput?tabs=api-async).
 

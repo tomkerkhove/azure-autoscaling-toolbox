@@ -9,7 +9,7 @@ parent: Autoscalers
 [Docs](https://azure.github.io/bellhop){: .btn }
 [GitHub](https://github.com/Azure/bellhop){: .btn }
 
-Bellhop is an open-source project by Microsoft that allows you to hop between Azure Resource service tiers based on time based on Azure tags.
+**Bellhop** is an open-source project by Microsoft that allows you to hop between Azure Resource service tiers based on time based on Azure tags.
 
 You can easily deploy it in your Azure subscription and get started.
 

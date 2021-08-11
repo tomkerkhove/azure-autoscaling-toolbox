@@ -12,7 +12,7 @@ parent: Autoscalers
 [Best Practices](https://docs.microsoft.com/en-us/azure/azure-monitor/service-limits#autoscale){: .btn }
 [Limitations](https://docs.microsoft.com/en-us/azure/azure-monitor/service-limits#autoscale){: .btn }
 
-Azure Monitor Autoscale is an autoscaler-as-a-service that allows you to automatically scale a variety of Azure resources in/out based on the scaling criteria that you define.
+**Azure Monitor Autoscale is an autoscaler-as-a-service** that allows you to automatically scale a variety of Azure resources in/out based on the scaling criteria that you define.
 
 The scaling criteria allows you to define when to scale out and when to scale in, based on metrics or a schedule. The rules that are defined can also control how many instances should be added/removed and how long it should wait before taking any other actions.
 
