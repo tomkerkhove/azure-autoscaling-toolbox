@@ -2,11 +2,11 @@
 layout: page
 title: Limitations
 permalink: /limitations/
-nav_order: 4
+nav_order: 5
 ---
 
 # Limitations
 
-Here is an overview of the autoscaling limitations in Microsoft Azure.
+We do not have any cross-service autoscaling limitations in Microsoft Azure at the moment.
 
-- **Azure API Management** will only autoscale the primary location in a multi-regional deployment scenario ([Docs](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-autoscale#azure-api-management-autoscale-limitations))
+However, we recommend reading the [documentation per Azure service](https://azure-autoscaling-toolbox.cloud/services/) to understand the limitations of each service.
