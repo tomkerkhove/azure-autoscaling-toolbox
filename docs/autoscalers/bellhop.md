@@ -1,18 +1,19 @@
 ---
 layout: default
-title: Azure Monitor Autoscale
+title: Bellhop
 parent: Autoscalers
 ---
 
-# Azure Monitor Autoscale
+# Bellhop
 
-[Docs](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview){: .btn }
-[Best Practices](**https://docs.microsoft.com/en-us/azure/azure-monitor/service-limits#autoscale**){: .btn }
-[Limitations](https://docs.microsoft.com/en-us/azure/azure-monitor/service-limits#autoscale){: .btn }
+[Docs](https://azure.github.io/bellhop){: .btn }
+[GitHub](https://github.com/Azure/bellhop){: .btn }
 
-Azure Monitor Autoscale is an autoscaler-as-a-service that allows you to automatically scale a variety of Azure resources in/out based on the scaling criteria that you define.
+Bellhop is an open-source project by Microsoft that allows you to hop between Azure Resource service tiers based on time based on Azure tags.
 
-The scaling criteria allows you to define when to scale out and when to scale in, based on metrics or a schedule. The rules that are defined can also control how many instances should be added/removed and how long it should wait before taking any other actions.
+You can easily deploy it in your Azure subscription and get started.
+
+[![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fbellhop%2Fmain%2Ftemplates%2Fazuredeploy.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fbellhop%2Fmain%2Ftemplates%2FcreateUiDefinition.json)
 
 ## Maintainer
 
@@ -20,29 +21,23 @@ Microsoft
 
 ## Support
 
-TODO
+Community-based support is available on GitHub through [GitHub Discussions](https://github.com/Azure/bellhop/discussions).
 
 ## Observability
 
-Coming soon.
+None, but does provide [monitoring for Bellhop itself](https://azure.github.io/bellhop/#/monitoring/README).
 
 ## Supported Services
 
-[Full Overview](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview#supported-services-for-autoscale){: .btn }
+[Full Overview](https://azure.github.io/bellhop/#/README?id=currently-supported-azure-services){: .btn }
 
 You can autoscale the following Azure services:
 
-- Azure API Management
 - Azure App Service
-- Azure Cloud Services
-- Azure Data Explorer Clusters
-- Azure Logic Apps
-- Azure Service Bus
-- Azure Spring Cloud
+- Azure SQL DB
+- Azure SQL DB Elastic Pools
 - Azure Virtual Machines
-- Azure Virtual Machines Scale Sets
-- Azure Web Apps
 
 ## Limitations
 
-Learn more about the limitations in the [documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/service-limits#autoscale).
+You have to deploy and operate Bellhop in your subscription.
