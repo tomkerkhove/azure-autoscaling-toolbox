@@ -12,7 +12,7 @@ parent: Autoscalers
 [Best Practices](https://docs.microsoft.com/en-us/azure/azure-monitor/service-limits#autoscale){: .btn }
 [Limitations](https://docs.microsoft.com/en-us/azure/azure-monitor/service-limits#autoscale){: .btn }
 
-Azure Monitor Autoscale is an autoscaler-as-a-service that allows you to automatically scale a variety of Azure resources in/out based on the scaling criteria that you define.
+**Azure Monitor Autoscale is an autoscaler-as-a-service** that allows you to automatically scale a variety of Azure resources in/out based on the scaling criteria that you define.
 
 The scaling criteria allows you to define when to scale out and when to scale in, based on metrics or a schedule. The rules that are defined can also control how many instances should be added/removed and how long it should wait before taking any other actions.
 
@@ -22,15 +22,26 @@ Learn more how to get started in the [documentation](https://docs.microsoft.com/
 
 Microsoft
 
+## Scaling Mechanism
+
+Scale out or in by adding or removing instances.
+
+## Deployment
+
+Available as a service and managed through ARM, REST API, Azure Portal, or Azure CLI.
+
 ## Support
 
 Yes, through Azure Support.
 
 ## Observability
 
-Coming soon.
-https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-troubleshoot
--[Webhooks and email](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-webhook-email)
+Azure Monitor Autoscale provides a variety of ways to gain insights on your autoscaling:
+
+- [Receive Webhooks & Emails](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-webhook-email)
+- [Visualize Metrics](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-troubleshoot#autoscale-metrics)
+- [View Autoscaling Events](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-troubleshoot#example-3---understanding-autoscale-events)
+- [View Autoscaling Logs](https://docs.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-troubleshoot#autoscale-resource-logs)
 
 ## Supported Services
 
