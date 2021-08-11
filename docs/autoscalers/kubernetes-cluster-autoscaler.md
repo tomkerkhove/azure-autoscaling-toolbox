@@ -7,8 +7,6 @@ parent: Autoscalers
 # Cluster Autoscaler for Azure Kubernetes Service
 
 [Docs](https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler){: .btn }
-[Best Practices](**https://docs.microsoft.com/en-us/azure/azure-monitor/service-limits#autoscale**){: .btn }
-[Limitations](https://docs.microsoft.com/en-us/azure/azure-monitor/service-limits#autoscale){: .btn }
 
 **Cluster Autoscaler for Azure Kubernetes Service** automatically scales a node pool in your Azure Kubernetes Service cluster to meet the cluster demand.
 
