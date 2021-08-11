@@ -46,4 +46,4 @@ You can autoscale the following Azure services:
 
 ## Limitations
 
-You have to deploy and operate Bellhop in your subscription.
+- You have to deploy and operate Bellhop in your subscription.

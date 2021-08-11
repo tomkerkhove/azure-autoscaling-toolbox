@@ -53,4 +53,4 @@ You can autoscale based on the following Azure services:
 
 ## Limitations
 
-None.
+- You have to deploy and operate KEDA in your Kubernetes cluster.
